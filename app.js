@@ -28,6 +28,21 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
+// CONEXION A BASE DE DATOS
+const mongoose = require('mongoose');
+
+const user = 'vate_dario';
+const password = 'UF43gFhtsIxlYMyX';
+const dbname = 'veterinaria'
+const uri = `mongodb+srv://vate_dario:${password}@cluster0.cwdv8.mongodb.net/${dbname}?retryWrites=true&w=majority`;
+
+main().then(()=> console.log('base de datos conectada'))
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect(uri);
+}
+
 // MOTOR DE PLANTILLA
 
 app.set('view engine', 'ejs');
